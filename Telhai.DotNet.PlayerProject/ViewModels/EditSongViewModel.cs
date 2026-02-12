@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Telhai.DotNet.PlayerProject.Models;
 using Telhai.DotNet.PlayerProject.Services;
-//m
+//mm
 namespace Telhai.DotNet.PlayerProject.ViewModels
 {
     public class EditSongViewModel : INotifyPropertyChanged
@@ -37,7 +37,7 @@ namespace Telhai.DotNet.PlayerProject.ViewModels
             set { _albumName = value; OnPropertyChanged(); }
         }
 
-        // Images list for this song
+        
         public ObservableCollection<string> Images { get; set; } = new ObservableCollection<string>();
 
         public EditSongViewModel(string filePath)
@@ -73,7 +73,7 @@ namespace Telhai.DotNet.PlayerProject.ViewModels
 
         public void Save()
         {
-            // Keep existing iTunes artwork if it exists
+           
             var existing = _cache.GetByFilePath(_filePath);
 
             var meta = new SongMetadata
@@ -83,10 +83,10 @@ namespace Telhai.DotNet.PlayerProject.ViewModels
                 ArtistName = ArtistName,
                 AlbumName = AlbumName,
 
-                // ✅ THIS is what must be saved (including deletions)
+                
                 ImageUrls = new System.Collections.Generic.List<string>(Images),
 
-                // keep iTunes artwork so player can show it when no images exist
+           
                 ItunesArtworkUrl = existing?.ItunesArtworkUrl ?? ""
             };
 

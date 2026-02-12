@@ -66,7 +66,7 @@ namespace Telhai.DotNet.PlayerProject
             }
         }
 
-        // Single click: show local info + cached metadata if exists
+      
         private void LstLibrary_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (lstLibrary.SelectedItem is MusicTrack track)
@@ -91,7 +91,7 @@ namespace Telhai.DotNet.PlayerProject
             }
         }
 
-        // Double click: play + async metadata
+        
         private void LstLibrary_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (lstLibrary.SelectedItem is MusicTrack track)
@@ -189,20 +189,20 @@ namespace Telhai.DotNet.PlayerProject
             win.Owner = this;
             win.ShowDialog();
 
-            // Reload from cache after edit
+            
             var cached = _cache.GetByFilePath(track.FilePath);
             if (cached != null)
             {
                 ShowMetadataFromCacheOrLocal(track, cached);
                 txtStatus.Text = "Updated after edit (cache).";
 
-                // ✅ חשוב: אם השיר כבר מנגן - תתחילי מיד את הלופ לפי התמונות החדשות
+               
                 if (mediaPlayer.Source != null && mediaPlayer.Source.LocalPath == track.FilePath)
                 {
                     if (cached.ImageUrls != null && cached.ImageUrls.Count > 0)
                         StartSlideshow(cached.ImageUrls);
                     else
-                        StopSlideshow(); // יחזור לתמונת API רגילה
+                        StopSlideshow(); 
                 }
             }
         }
@@ -247,7 +247,7 @@ namespace Telhai.DotNet.PlayerProject
             ShowDefaultCover();
             txtMetaTrack.Text = track.Title;
 
-            // 1) cache first
+         
             var cached = _cache.GetByFilePath(track.FilePath);
             if (cached != null)
             {
@@ -256,7 +256,7 @@ namespace Telhai.DotNet.PlayerProject
                 return;
             }
 
-            // 2) not in cache -> API
+            
             _itunesCts?.Cancel();
             _itunesCts = new CancellationTokenSource();
 
@@ -286,7 +286,7 @@ namespace Telhai.DotNet.PlayerProject
                     return;
                 }
 
-                // save to cache
+                
                 var meta = new SongMetadata
                 {
                     FilePath = track.FilePath,
@@ -305,7 +305,7 @@ namespace Telhai.DotNet.PlayerProject
                     txtMetaAlbum.Text = info.AlbumName ?? "-";
                     txtStatus.Text = "Info loaded (saved to cache).";
 
-                    // No user images yet -> no slideshow (API image only)
+                    
                     StopSlideshow();
 
                     if (!string.IsNullOrWhiteSpace(info.ArtworkUrl))
@@ -321,7 +321,7 @@ namespace Telhai.DotNet.PlayerProject
             }
             catch (OperationCanceledException)
             {
-                // ignore
+               
             }
             catch
             {
@@ -343,14 +343,14 @@ namespace Telhai.DotNet.PlayerProject
             txtMetaArtist.Text = string.IsNullOrWhiteSpace(cached.ArtistName) ? "-" : cached.ArtistName;
             txtMetaAlbum.Text = string.IsNullOrWhiteSpace(cached.AlbumName) ? "-" : cached.AlbumName;
 
-            // slideshow priority: images added by user (Edit window)
+           
             if (cached.ImageUrls != null && cached.ImageUrls.Count > 0)
             {
                 StartSlideshow(cached.ImageUrls);
                 return;
             }
 
-            // otherwise show iTunes artwork (single)
+            
             StopSlideshow();
             if (!string.IsNullOrWhiteSpace(cached.ItunesArtworkUrl))
             {
@@ -383,7 +383,7 @@ namespace Telhai.DotNet.PlayerProject
             imgCover.Source = null;
         }
 
-        // ---------------- Slideshow (2 seconds) ----------------
+   
 
         private void StartSlideshow(List<string> images)
         {

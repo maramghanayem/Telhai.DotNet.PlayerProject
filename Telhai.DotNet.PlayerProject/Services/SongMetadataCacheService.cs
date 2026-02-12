@@ -9,7 +9,7 @@ namespace Telhai.DotNet.PlayerProject.Services
 {
     public class SongMetadataCacheService
     {
-        // ✅ SINGLETON INSTANCE (shared across app)
+     
         private static readonly SongMetadataCacheService _instance = new SongMetadataCacheService();
         public static SongMetadataCacheService Instance => _instance;
 
@@ -18,7 +18,7 @@ namespace Telhai.DotNet.PlayerProject.Services
         private List<SongMetadata> _items = new List<SongMetadata>();
         private bool _loaded = false;
 
-        // ✅ prevent creating new instances
+       
         private SongMetadataCacheService() { }
 
         private void EnsureLoaded()
@@ -41,7 +41,7 @@ namespace Telhai.DotNet.PlayerProject.Services
             _loaded = true;
         }
 
-        // ✅ OPTIONAL: allow forcing reload from disk (useful for debug)
+        
         public void ReloadFromDisk()
         {
             _loaded = false;
@@ -62,7 +62,7 @@ namespace Telhai.DotNet.PlayerProject.Services
             var existing = GetByFilePath(item.FilePath);
             if (existing == null)
             {
-                // ensure lists not null
+               
                 if (item.ImageUrls == null) item.ImageUrls = new List<string>();
                 _items.Add(item);
             }
@@ -72,11 +72,11 @@ namespace Telhai.DotNet.PlayerProject.Services
                 existing.ArtistName = item.ArtistName;
                 existing.AlbumName = item.AlbumName;
 
-                // keep iTunes artwork if new one exists, otherwise keep old
+                
                 if (!string.IsNullOrWhiteSpace(item.ItunesArtworkUrl))
                     existing.ItunesArtworkUrl = item.ItunesArtworkUrl;
 
-                // ✅ IMPORTANT: replace images list (so deletions are saved!)
+               
                 existing.ImageUrls = item.ImageUrls ?? new List<string>();
             }
 

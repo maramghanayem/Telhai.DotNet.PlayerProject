@@ -36,7 +36,7 @@ namespace Telhai.DotNet.PlayerProject.Views
             if (lstImages.SelectedItem is string path)
             {
                 _vm.RemoveImage(path);
-                lstImages.Items.Refresh(); // רענון מיידי
+                lstImages.Items.Refresh(); 
             }
             else
             {

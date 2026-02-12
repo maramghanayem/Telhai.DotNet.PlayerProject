@@ -74,7 +74,7 @@ namespace Telhai.DotNet.PlayerProject
             {
                 if (Directory.Exists(folderPath))
                 {
-                    // SearchOption.AllDirectories makes it scan sub-folders
+                  
                     string[] files = Directory.GetFiles(folderPath, "*.mp3", SearchOption.AllDirectories);
 
                     foreach (string file in files)

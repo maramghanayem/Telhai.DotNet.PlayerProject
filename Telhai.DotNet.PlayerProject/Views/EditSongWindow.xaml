@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- File path -->
+       
         <TextBlock Text="File:"
                    FontWeight="Bold"/>
         <TextBlock Grid.Row="1"
@@ -27,25 +27,25 @@
                    TextWrapping="Wrap"
                    Margin="0,0,0,10"/>
 
-        <!-- Track -->
+        
         <TextBlock Grid.Row="2" Text="Track Name:" FontWeight="Bold"/>
         <TextBox Grid.Row="3"
                  Text="{Binding TrackName, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,10"/>
 
-        <!-- Artist -->
+        
         <TextBlock Grid.Row="4" Text="Artist Name:" FontWeight="Bold"/>
         <TextBox Grid.Row="5"
                  Text="{Binding ArtistName, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,10"/>
 
-        <!-- Album -->
+        
         <TextBlock Grid.Row="6" Text="Album Name:" FontWeight="Bold"/>
         <TextBox Grid.Row="7"
                  Text="{Binding AlbumName, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,10"/>
 
-        <!-- Images -->
+        
         <TextBlock Grid.Row="8" Text="Images:" FontWeight="Bold" Margin="0,10,0,5"/>
 
         <ListBox x:Name="lstImages"

@@ -15,7 +15,7 @@ namespace Telhai.DotNet.PlayerProject.Services
     public class ItunesService
 
     {
-        //init httpClient with prefix base adress domain
+        
         private static readonly HttpClient _httpClient = new HttpClient
         {
             BaseAddress = new Uri("https://itunes.apple.com/")
@@ -27,7 +27,7 @@ namespace Telhai.DotNet.PlayerProject.Services
         {
             if (string.IsNullOrWhiteSpace(songTitle))
                 return null;
-            //build the request URL
+           
             string encodedTerm = Uri.EscapeDataString(songTitle);
             string url = $"search?term={encodedTerm}&media=music&limit=1";
 
@@ -35,7 +35,7 @@ namespace Telhai.DotNet.PlayerProject.Services
                 await _httpClient.GetAsync(url, cancellationToken);
 
             response.EnsureSuccessStatusCode();
-            //Get reponse content as string 
+           
             string json = await response.Content.ReadAsStringAsync(cancellationToken);
 
             var data = JsonSerializer.Deserialize<ItunesSearchResponse>(

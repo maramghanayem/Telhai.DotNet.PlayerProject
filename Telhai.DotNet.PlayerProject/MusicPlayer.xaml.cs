@@ -29,7 +29,8 @@ namespace Telhai.DotNet.PlayerProject
         private CancellationTokenSource? _itunesCts;
 
         // Cache
-        private readonly SongMetadataCacheService _cache = new SongMetadataCacheService();
+        private readonly SongMetadataCacheService _cache = SongMetadataCacheService.Instance;
+
 
         // Slideshow (2 seconds loop)
         private DispatcherTimer _slideshowTimer = new DispatcherTimer();

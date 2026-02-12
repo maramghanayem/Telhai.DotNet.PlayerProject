@@ -3,12 +3,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Telhai.DotNet.PlayerProject.Models;
 using Telhai.DotNet.PlayerProject.Services;
-
+//m
 namespace Telhai.DotNet.PlayerProject.ViewModels
 {
     public class EditSongViewModel : INotifyPropertyChanged
     {
-        private readonly SongMetadataCacheService _cache = new SongMetadataCacheService();
+        private readonly SongMetadataCacheService _cache = SongMetadataCacheService.Instance;
+
         private readonly string _filePath;
 
         public event PropertyChangedEventHandler? PropertyChanged;
